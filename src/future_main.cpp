@@ -31,14 +31,23 @@ int main() {
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 130");
 
-    // Load Work Sans font (place WorkSans-Regular.ttf in external/fonts/)
-    ImFont* font = io.Fonts->AddFontFromFileTTF("../external/fonts/WorkSans-VariableFont_wght.ttf", 18.0f);
+    // Query monitor DPI scale so the UI is readable on high-DPI laptops
+    float xscale = 1.0f, yscale = 1.0f;
+    GLFWmonitor* primary = glfwGetPrimaryMonitor();
+    if (primary)
+        glfwGetMonitorContentScale(primary, &xscale, &yscale);
+    float dpi_scale = (xscale > yscale) ? xscale : yscale;
+    if (dpi_scale < 1.0f) dpi_scale = 1.0f;
+
+    const float base_font_size  = 18.0f * dpi_scale;
+    const float large_font_size = 24.0f * dpi_scale;
+
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../external/fonts/WorkSans-VariableFont_wght.ttf", base_font_size);
     if (font)
         io.FontDefault = font;
-    ImFont* font_large = io.Fonts->AddFontFromFileTTF("../external/fonts/WorkSans-VariableFont_wght.ttf", 24.0f);
+    ImFont* font_large = io.Fonts->AddFontFromFileTTF("../external/fonts/WorkSans-VariableFont_wght.ttf", large_font_size);
     if (!font_large)
         font_large = font;
-    // If file missing or load fails, ImGui keeps the default font
 
     
     ImGuiStyle& style = ImGui::GetStyle();
@@ -49,10 +58,10 @@ int main() {
     style.ScrollbarRounding = 4.f;
     style.GrabRounding = 4.f;
     style.TabRounding = 4.f;
-    style.FramePadding = ImVec2(12.f, 8.f);   
-    style.ItemSpacing = ImVec2(10.f, 8.f);
-    style.ItemInnerSpacing = ImVec2(8.f, 6.f);
-    style.WindowPadding = ImVec2(14.f, 14.f);
+    style.FramePadding = ImVec2(12.f * dpi_scale, 8.f * dpi_scale);
+    style.ItemSpacing = ImVec2(10.f * dpi_scale, 8.f * dpi_scale);
+    style.ItemInnerSpacing = ImVec2(8.f * dpi_scale, 6.f * dpi_scale);
+    style.WindowPadding = ImVec2(14.f * dpi_scale, 14.f * dpi_scale);
 
     
     ImVec4* colors = style.Colors;
@@ -72,8 +81,7 @@ int main() {
     colors[ImGuiCol_Border]            = ImVec4(0.28f, 0.30f, 0.34f, 1.00f);
     colors[ImGuiCol_BorderShadow]      = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
 
-    // Slightly larger default font
-    io.FontGlobalScale = 1.15f;
+    io.FontGlobalScale = 1.0f;
 
     //Open the main window
     bool open = true;
