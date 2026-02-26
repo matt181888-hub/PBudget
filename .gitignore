@@ -1,0 +1,6 @@
+build/
+*.db
+.vscode/
+imgui.ini
+.DS_Store
+Thumbs.db
