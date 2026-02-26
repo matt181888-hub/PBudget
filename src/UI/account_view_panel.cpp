@@ -64,8 +64,9 @@ void draw_account_view_panel(App_state& state, Controller& controller, float rig
 
     const char* month_names[] = { "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December" };
-    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(6.f, 2.f));
-    if (ImGui::Button("<", ImVec2(22.f, 0.f)))
+    const float s = state.dpi_scale;
+    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(6.f * s, 2.f * s));
+    if (ImGui::Button("<", ImVec2(22.f * s, 0.f)))
     {
         if (display_month <= 1) { display_month = 12; display_year--; }
         else { display_month--; }
@@ -73,7 +74,7 @@ void draw_account_view_panel(App_state& state, Controller& controller, float rig
     ImGui::SameLine();
     ImGui::Text("%s %d", display_month >= 1 && display_month <= 12 ? month_names[display_month - 1] : "?", display_year);
     ImGui::SameLine();
-    if (ImGui::Button(">", ImVec2(22.f, 0.f)))
+    if (ImGui::Button(">", ImVec2(22.f * s, 0.f)))
     {
         if (display_month >= 12) { display_month = 1; display_year++; }
         else { display_month++; }
@@ -118,7 +119,7 @@ void draw_account_view_panel(App_state& state, Controller& controller, float rig
             ImGui::TextUnformatted("No transactions.");
         else
         {
-            ImGui::BeginChild("TxnList", ImVec2(450, 350), true);
+            ImGui::BeginChild("TxnList", ImVec2(450 * s, 350 * s), true);
             for (int i = static_cast<int>(all_txns.size()) - 1; i >= 0; --i)
             {
                 const auto& t = all_txns[i];

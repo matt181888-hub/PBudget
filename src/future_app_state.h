@@ -9,5 +9,6 @@ struct App_state
     int selected_account_index = -1;
     int modify_account_index = -1;
     bool create_transaction_open = false;
+    float dpi_scale = 1.0f;
     std::vector<Account_info> wallet;
 };

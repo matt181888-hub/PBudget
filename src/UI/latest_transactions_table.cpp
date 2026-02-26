@@ -20,10 +20,10 @@ void draw_latest_transactions_table(App_state& state, Controller& controller)
         if (ImGui::BeginTable("LatestTransactions", 5, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg))
         {
             ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch);
-            ImGui::TableSetupColumn("Amount", ImGuiTableColumnFlags_WidthFixed, 80.0f);
-            ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, 90.0f);
-            ImGui::TableSetupColumn("Date", ImGuiTableColumnFlags_WidthFixed, 150.0f);
-            ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, 40.0f);
+            ImGui::TableSetupColumn("Amount", ImGuiTableColumnFlags_WidthFixed, 80.0f * state.dpi_scale);
+            ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, 90.0f * state.dpi_scale);
+            ImGui::TableSetupColumn("Date", ImGuiTableColumnFlags_WidthFixed, 150.0f * state.dpi_scale);
+            ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, 40.0f * state.dpi_scale);
             ImGui::TableHeadersRow();
             for (int i = 0; i < show_count; ++i)
             {

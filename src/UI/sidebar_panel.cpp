@@ -40,7 +40,7 @@ Sidebar_result draw_sidebar(App_state& state, Controller& controller, float left
     {
         ImGui::Separator();
         ImGui::Text("Accounts");
-        const float settings_btn_w = 36.f;
+        const float settings_btn_w = 36.f * state.dpi_scale;
         const float account_btn_h = ImGui::GetFrameHeight();
         for (int i = 0; i < (int)state.wallet.size(); ++i)
         {

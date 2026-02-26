@@ -91,6 +91,7 @@ int main() {
 
 
     App_state state;
+    state.dpi_scale = dpi_scale;
     Controller controller(state, myDB);
     state.wallet = myDB.load_accounts();
     myDB.load_all_transactions();
