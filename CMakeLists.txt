@@ -7,6 +7,14 @@ add_compile_options(-g)
 
 set(CMAKE_CXX_STANDARD 20)
 
+include(FetchContent)
+FetchContent_Declare(
+    Catch2
+    GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+    GIT_TAG        v3.4.0   # or another tag
+    )
+FetchContent_MakeAvailable(Catch2)
+
 include_directories(
     external/imgui
     external/imgui/backends
@@ -46,5 +54,27 @@ set(SOURCES
     external/sqlite/sqlite3.c
 )
 
+set(TEST_SOURCES
+    tests/core_logic_tests.cpp
+    tests/storage_tests.cpp
+    tests/helpers_tests.cpp
+    tests/app_controller_tests.cpp
+
+    src/app_controller.cpp
+
+
+    src/core_logic.cpp
+    src/storage.cpp
+    src/helpers.cpp
+
+
+
+    # SQLite (C)
+    external/sqlite/sqlite3.c
+)
+
 add_executable(BudgetApp ${SOURCES})
 target_link_libraries(BudgetApp glfw OpenGL::GL dl pthread)
+
+add_executable(TESTBudgetApp ${TEST_SOURCES})
+target_link_libraries(TESTBudgetApp PRIVATE Catch2::Catch2WithMain dl pthread)

@@ -106,10 +106,6 @@ class Account
     public:
 
         //Constructors
-        Account();
-        Account(Account_type type);
-        Account(int money);
-        Account(Account_type type, int money);
         Account(std::string account_name, Account_type type, int money, bool is_asset);
         Account(std::string name, Account_type type, int money, bool is_asset, Liability_parameters liability_params);
         Account(std::string name, Account_type type, int money, bool is_asset, Asset_parameters asset_params);

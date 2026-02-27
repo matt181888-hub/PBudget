@@ -40,7 +40,7 @@ class Storage
 { 
     public:
         //constructors
-        Storage();
+        explicit Storage(const std::string& db_path = "mydata.db");
         ~Storage();
 
         //methods

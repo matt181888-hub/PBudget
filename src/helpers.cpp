@@ -66,7 +66,7 @@ const char* transaction_type_to_string(Transaction_type type_of_transaction)
         case Transaction_type::Need: return "Need";
         case Transaction_type::Want: return "Want";
         case Transaction_type::Savings: return "Savings";
-        case Transaction_type::Internal_transfer: return "Transfer";
+        case Transaction_type::Internal_transfer: return "Internal_transfer";
         case Transaction_type::Income: return "Income";
         case Transaction_type::Gift: return "Gift";
         case Transaction_type::Dividends: return "Dividends";

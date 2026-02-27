@@ -9,16 +9,6 @@ int balance_after_transaction(int current_balance_cents, int amount_cents, bool 
     return current_balance_cents + delta;
 }
 
-Account::Account() : money_amount(0), type_of_account(Account_type::checking), asset(true) {}
-
-Account::Account(Account_type type) : money_amount(0), type_of_account(type),
-    asset(type == Account_type::checking || type == Account_type::savings || type == Account_type::investments) {}
-
-Account::Account(int money) : money_amount(money), type_of_account(Account_type::checking), initial_money_amount(money), asset(true) {}
-
-Account::Account(Account_type type, int money) : money_amount(money), type_of_account(type), initial_money_amount(money),
-    asset(type == Account_type::checking || type == Account_type::savings || type == Account_type::investments) {}
-
 Account::Account(std::string name, Account_type type, int money, bool is_asset) : money_amount(money), type_of_account(type), account_name(name), initial_money_amount(money), asset(is_asset) {}
 
 Account::Account(std::string name, Account_type type, int money, bool is_asset, Liability_parameters liability_params) : money_amount(money), type_of_account(type), account_name(name), initial_money_amount(money), asset(is_asset), liability_parameters(liability_params) {}

@@ -9,12 +9,12 @@ extern "C"{
 
 
 //create the storage object if it doesnt exist yet, and open the database
-Storage::Storage()           
+Storage::Storage(const std::string& db_path)
     {
 
         int rc;
 
-        rc = sqlite3_open("mydata.db", &db);
+        rc = sqlite3_open(db_path.c_str(), &db);
 
         if (rc) 
         {
